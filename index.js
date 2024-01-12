@@ -50,7 +50,8 @@ app.get('/info', (request, response) => {
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     persons = persons.filter(person => person.id !== id)
-}
+    response.status(204).end() // 204 No Content
+})
 
 // open port and start
 const PORT = 3001
