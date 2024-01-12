@@ -30,6 +30,17 @@ app.get('/api/persons', (request, response) => {
     console.log(persons);
 })
 
+app.get('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    const person = persons.find(person => person.id === id)
+    
+    if (person){
+        response.json(person)
+    } else {
+        response.status(404).send('ID not found')
+    }
+})
+
 app.get('/info', (request, response) => {
     // There can only be one response.send() statement in an Express app route. Once you send a response to the client using response.send(), 
     // the request-response cycle is complete and no further response can be sent.
